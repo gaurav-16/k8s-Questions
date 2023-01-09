@@ -1,0 +1,28 @@
+---
+ - name: Installation of Apache web server independent to OS distribution
+   hosts: clients
+   become: yes
+   tasks:
+           - name: Installing Apache2 on Debian
+             apt:
+                 name: apache2
+                 state: latest
+             when: ansible_os_family == 'Debian'
+
+           - name: Installing HTTPD on Redhat
+             yum:
+                 name: httpd
+                 state: latest
+             when: ansible_os_family == "RedHat"
+
+           - name: Installing HTTPD on Centos
+             yum:
+                 name: httpd
+                 state: latest
+             when: ansible_os_family == "Centos"
+
+           - name: Installing HTTPD on Fedora
+             yum:
+                 name: httpd
+                 state: latest
+             when: ansible_os_family == "Fedora"
